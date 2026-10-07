@@ -1,0 +1,167 @@
+{
+  "build": "AREX-2-4bit-sampled",
+  "tasks": {
+    "simplify_path": {
+      "pass": true,
+      "tokens": 898,
+      "seconds": 65.8,
+      "tps": 14.1,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef simplify_path(path: str) -> str:\n    stack = []\n    for part in path.split('/'):\n        if not part or part == '.':\n            continue\n        if part == '..':\n            if stack:\n                stack.pop()\n        else:\n            stack.append(part)\n    return '/' + '/'.join(stack)\n```"
+    },
+    "calculate": {
+      "pass": true,
+      "tokens": 3655,
+      "seconds": 270.7,
+      "tps": 13.6,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": " self.peek()\n            if kind == \"OP\" and val in \"+-\":\n                self.advance()\n                rhs = self.parse_term()\n                value = value + rhs if val == \"+\" else value - rhs\n            else:\n                break\n        return value\n\n    def parse_term(self):\n        value = self.parse_factor()\n        while True:\n            kind, val = self.peek()\n            if kind == \"OP\" and val in \"*/\":\n                self.advance()\n                rhs = self.parse_factor()\n                if val == \"*\":\n                    value = value * rhs\n                else:\n                    value = _trunc_div(value, rhs)\n            else:\n                break\n        return value\n\n    def parse_factor(self):\n        kind, val = self.peek()\n        if kind == \"OP\" and val in \"+-\":\n            self.advance()\n            value = self.parse_factor()\n            return -value if val == \"-\" else value\n        return self.parse_primary()\n\n    def parse_primary(self):\n        kind, val = self.peek()\n        if kind == \"INT\":\n            self.advance()\n            return val\n        if kind == \"LPAREN\":\n            self.advance()\n            value = self.parse_expression()\n            self.expect(\"RPAREN\", \")\")\n            return value\n        raise ValueError(f\"Expected number or '(', got {val!r}\")\n\n\ndef _trunc_div(a: int, b: int) -> int:\n    if b == 0:\n        raise ZeroDivisionError(\"division by zero\")\n    q = abs(a) // abs(b)\n    return -q if (a < 0) ^ (b < 0) else q\n```"
+    },
+    "largest_rectangle": {
+      "pass": true,
+      "tokens": 2387,
+      "seconds": 177.0,
+      "tps": 13.6,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef largest_rectangle(heights: list[int]) -> int:\n    \"\"\"Return the area of the largest rectangle in a histogram with unit-width bars.\n\n    Runs in O(n) time and O(n) space using a monotonic stack.\n    \"\"\"\n    stack: list[int] = []\n    max_area = 0\n    n = len(heights)\n\n    for i in range(n + 1):\n        cur = heights[i] if i < n else 0\n        while stack and heights[stack[-1]] > cur:\n            h = heights[stack.pop()]\n            width = i if not stack else i - stack[-1] - 1\n            area = h * width\n            if area > max_area:\n                max_area = area\n        stack.append(i)\n\n    return max_area\n```"
+    },
+    "word_break": {
+      "pass": true,
+      "tokens": 1149,
+      "seconds": 81.8,
+      "tps": 14.3,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef word_break(s: str, words: list[str]) -> bool:\n    \"\"\"Return True if s can be segmented into a sequence of one or more\n    words from `words` (words may be reused). The empty string returns True.\"\"\"\n    if s == \"\":\n        return True\n\n    # Ignore empty strings in the word list; they would not help segmentation.\n    word_set = {w for w in words if w}\n    if not word_set:\n        return False\n\n    max_len = max(len(w) for w in word_set)\n    n = len(s)\n\n    # dp[i] is True if s[:i] can be broken into valid words.\n    dp = [False] * (n + 1)\n    dp[0] = True\n\n    for i in range(n):\n        if not dp[i]:\n            continue\n        upper = min(n, i + max_len)\n        for j in range(i + 1, upper + 1):\n            if s[i:j] in word_set:\n                dp[j] = True\n\n    return dp[n]\n```"
+    },
+    "merge_intervals": {
+      "pass": true,
+      "tokens": 400,
+      "seconds": 28.8,
+      "tps": 14.7,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef merge_intervals(intervals: list[list[int]]) -> list[list[int]]:\n    if not intervals:\n        return []\n    intervals.sort(key=lambda x: x[0])\n    merged = [intervals[0]]\n    for start, end in intervals[1:]:\n        last = merged[-1]\n        if start <= last[1]:\n            last[1] = max(last[1], end)\n        else:\n            merged.append([start, end])\n    return merged\n```"
+    },
+    "int_to_roman": {
+      "pass": true,
+      "tokens": 1166,
+      "seconds": 85.1,
+      "tps": 13.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef int_to_roman(n: int) -> str:\n    \"\"\"Convert an integer 1..3999 to a Roman numeral.\"\"\"\n    if not isinstance(n, int) or not 1 <= n <= 3999:\n        raise ValueError(\"Input must be an integer between 1 and 3999\")\n\n    values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]\n    symbols = [\"M\", \"CM\", \"D\", \"CD\", \"C\", \"XC\", \"L\", \"XL\", \"X\", \"IX\", \"V\", \"IV\", \"I\"]\n\n    result = []\n    for value, symbol in zip(values, symbols):\n        if n >= value:\n            count = n // value\n            result.append(symbol * count)\n            n %= value\n    return \"\".join(result)\n```"
+    },
+    "longest_palindrome": {
+      "pass": false,
+      "tokens": 4000,
+      "seconds": 298.4,
+      "tps": 13.5,
+      "closed_thinking": false,
+      "end_think_tags": 0,
+      "answer": "k-1\n        length = 2*k\n        if length == 0:\n            continue\n        start = i - k\n        if length > best_len or (length == best_len and start < best_start):\n            best_len = length; best_start = start\n    return s[best_start:best_start+best_len]\n\nCheck d2 mirror index: cp-algorithms uses d2[l+r-i+1]. Let's verify with \"abba\". n=4.\ni=0: i>r(-1) yes k=0. while i-k-1=-1 no. d2[0]=0. i+k-1=-1 > r? -1 > -1 false. l=0,r=-1.\ni=1: i> r? 1>-1 yes k=0. while 1-0-1=0 >=0 and 1+0=1<4 and s[0]==s[1]? 'a'=='b' no. d2[1]=0. i+k-1=0 > r=-1 yes -> l=1, r=0. (palindrome empty? l=1,r=0 means empty segment)\ni=2: i>r? 2>0 yes k=0. while 2-0-1=1>=0 and 2<4 and s[1]==s[2]? 'b'=='b' yes k=1. loop: i-k-1=0, i+k=3, s[0]==s[3]? 'a'=='a' yes k=2. loop: i-k-1=-1 stop. d2[2]=2. i+k-1=3 > r=0 -> l=i-k=0, r=3. length4 start0 best.\ni=3: i>r? 3>3 false. mirror = l+r-i+1 = 0+3-3+1=1. d2[1]=0. min(0, r-i+1=1) =0. k=0. while 3-0-1=2, 3<4, s[2]==s[3]? 'b'=='a' no. d2[3]=0. i+k-1=2 > r=3? no. Good.\n\nWorks.\n\nCheck d1 mirror: \"aba\" n=3.\ni=0: k=1, while -1 no. d1[0]=1, l=0,r=0.\ni=1: i>r? 1>0 yes k=1. while 0 and 2 s[0]==s[2] yes k=2. next -1 stop. d1[1]=2, l=0,r=2.\ni=2: i>r? 2>2 false. mirror=l+r-i=0+2-2=0. d1[0]=1. min(1, r-i+1=1)=1. k=1. while 1 and 3 out. d1[2]=1. length1 start2. best remains len3 start0. Good.\n\nTie-breaking with start comparison handles all.\n\nPotential issue: For even loop, when length==best_len and start < best_start update. Since we process i increasing, starts for even palind"
+    },
+    "eval_rpn": {
+      "pass": true,
+      "tokens": 890,
+      "seconds": 65.7,
+      "tps": 13.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef eval_rpn(tokens: list[str]) -> int:\n    stack: list[int] = []\n    operators = {\"+\", \"-\", \"*\", \"/\"}\n\n    for token in tokens:\n        if token in operators:\n            b = stack.pop()\n            a = stack.pop()\n            if token == \"+\":\n                stack.append(a + b)\n            elif token == \"-\":\n                stack.append(a - b)\n            elif token == \"*\":\n                stack.append(a * b)\n            else:  # \"/\"\n                # Truncate toward zero (Python's // rounds toward -inf)\n                quotient = abs(a) // abs(b)\n                if (a < 0) ^ (b < 0):\n                    quotient = -quotient\n                stack.append(quotient)\n        else:\n            stack.append(int(token))\n\n    return stack[0]\n```"
+    },
+    "spiral_order": {
+      "pass": true,
+      "tokens": 929,
+      "seconds": 69.0,
+      "tps": 13.8,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef spiral_order(matrix: list[list[int]]) -> list[int]:\n    \"\"\"Return the elements of matrix in clockwise spiral order, starting at the top-left.\"\"\"\n    if not matrix or not matrix[0]:\n        return []\n\n    rows = len(matrix)\n    cols = len(matrix[0])\n    result = []\n\n    top, bottom = 0, rows - 1\n    left, right = 0, cols - 1\n\n    while top <= bottom and left <= right:\n        # Traverse right along the top row\n        for c in range(left, right + 1):\n            result.append(matrix[top][c])\n        top += 1\n\n        # Traverse down along the rightmost column\n        for r in range(top, bottom + 1):\n            result.append(matrix[r][right])\n        right -= 1\n\n        # Traverse left along the bottom row (if any rows remain)\n        if top <= bottom:\n            for c in range(right, left - 1, -1):\n                result.append(matrix[bottom][c])\n            bottom -= 1\n\n        # Traverse up along the leftmost column (if any columns remain)\n        if left <= right:\n            for r in range(bottom, top - 1, -1):\n                result.append(matrix[r][left])\n            left += 1\n\n    return result\n```"
+    },
+    "min_window": {
+      "pass": true,
+      "tokens": 1275,
+      "seconds": 93.8,
+      "tps": 13.8,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\nfrom collections import Counter\n\ndef min_window(s: str, t: str) -> str:\n    if not t:\n        return \"\"\n\n    need = Counter(t)\n    required = len(need)\n    formed = 0\n    window = Counter()\n\n    left = 0\n    min_len = float(\"inf\")\n    min_left = 0\n\n    for right, ch in enumerate(s):\n        window[ch] += 1\n        if ch in need and window[ch] == need[ch]:\n            formed += 1\n\n        while formed == required:\n            length = right - left + 1\n            if length < min_len:\n                min_len = length\n                min_left = left\n\n            left_ch = s[left]\n            window[left_ch] -= 1\n            if left_ch in need and window[left_ch] < need[left_ch]:\n                formed -= 1\n            left += 1\n\n    return \"\" if min_len == float(\"inf\") else s[min_left:min_left + min_len]\n```"
+    },
+    "decode_string": {
+      "pass": true,
+      "tokens": 1442,
+      "seconds": 106.7,
+      "tps": 13.7,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef decode_string(s: str) -> str:\n    \"\"\"\n    Expand k[text] patterns, which may nest.\n    Example: '3[a2[c]]' -> 'accaccacc'\n    \"\"\"\n    stack = []\n    num = 0\n    res = ''\n\n    for ch in s:\n        if ch.isdigit():\n            num = num * 10 + int(ch)\n        elif ch == '[':\n            stack.append((num, res))\n            num = 0\n            res = ''\n        elif ch == ']':\n            prev_num, prev_res = stack.pop()\n            res = prev_res + res * prev_num\n        else:\n            res += ch\n\n    return res\n```"
+    },
+    "next_permutation": {
+      "pass": true,
+      "tokens": 626,
+      "seconds": 46.1,
+      "tps": 14.1,
+      "closed_thinking": true,
+      "end_think_tags": 3,
+      "answer": "\n```python\ndef next_permutation(nums: list[int]) -> list[int]:\n    a = nums[:]\n    n = len(a)\n    \n    # Find the longest non-increasing suffix\n    i = n - 2\n    while i >= 0 and a[i] >= a[i + 1]:\n        i -= 1\n    \n    # If the whole array is non-increasing, it's the last permutation\n    if i < 0:\n        return sorted(a)\n    \n    # Find the rightmost element greater than a[i]\n    j = n - 1\n    while a[j] <= a[i]:\n        j -= 1\n    \n    # Swap pivot with successor\n    a[i], a[j] = a[j], a[i]\n    \n    # Reverse the suffix to get the next permutation\n    a[i + 1:] = a[i + 1:][::-1]\n    \n    return a\n```"
+    },
+    "top_k_frequent": {
+      "pass": true,
+      "tokens": 480,
+      "seconds": 36.3,
+      "tps": 13.8,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\nfrom collections import Counter\n\n\ndef top_k_frequent(words: list[str], k: int) -> list[str]:\n    \"\"\"Return the k most frequent words, most frequent first.\n    \n    Ties in frequency are broken alphabetically.\n    \"\"\"\n    if k <= 0:\n        return []\n    counts = Counter(words)\n    return sorted(counts, key=lambda w: (-counts[w], w))[:k]\n```"
+    },
+    "count_islands": {
+      "pass": true,
+      "tokens": 1268,
+      "seconds": 93.1,
+      "tps": 13.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef count_islands(grid: list[list[str]]) -> int:\n    \"\"\"Count groups of '1' cells connected horizontally or vertically.\n\n    The input grid is not modified. Only the standard library is used.\n    \"\"\"\n    if not grid:\n        return 0\n\n    rows = len(grid)\n    visited = set()\n    count = 0\n    directions = ((1, 0), (-1, 0), (0, 1), (0, -1))\n\n    for r in range(rows):\n        for c in range(len(grid[r])):\n            if grid[r][c] == '1' and (r, c) not in visited:\n                count += 1\n                stack = [(r, c)]\n                visited.add((r, c))\n\n                while stack:\n                    cr, cc = stack.pop()\n                    for dr, dc in directions:\n                        nr, nc = cr + dr, cc + dc\n                        if (0 <= nr < rows\n                                and 0 <= nc < len(grid[nr])\n                                and grid[nr][nc] == '1'\n                                and (nr, nc) not in visited):\n                            visited.add((nr, nc))\n                            stack.append((nr, nc))\n\n    return count\n```"
+    },
+    "edit_distance": {
+      "pass": true,
+      "tokens": 679,
+      "seconds": 50.2,
+      "tps": 13.9,
+      "closed_thinking": true,
+      "end_think_tags": 4,
+      "answer": "\n```python\ndef edit_distance(a: str, b: str) -> int:\n    \"\"\"Compute the Levenshtein distance between strings a and b.\n\n    Allowed operations: insert, delete, substitute (each costs 1).\n    Uses O(min(len(a), len(b))) space via two-row dynamic programming.\n    \"\"\"\n    # Ensure b is the shorter string to minimize memory usage.\n    if len(b) > len(a):\n        a, b = b, a\n\n    m, n = len(a), len(b)\n    if n == 0:\n        return m\n    if m == 0:\n        return n\n\n    # prev[j] = edit distance between a[:i-1] and b[:j]\n    prev = list(range(n + 1))\n\n    for i, ca in enumerate(a, 1):\n        curr = [i] + [0] * n\n        for j, cb in enumerate(b, 1):\n            cost = 0 if ca == cb else 1\n            curr[j] = min(\n                prev[j] + 1,        # delete from a\n                curr[j - 1] + 1,    # insert into a\n                prev[j - 1] + cost  # substitute / match\n            )\n        prev = curr\n\n    return prev[n]\n```"
+    },
+    "trap_water": {
+      "pass": true,
+      "tokens": 449,
+      "seconds": 33.7,
+      "tps": 13.8,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef trap_water(heights: list[int]) -> int:\n    \"\"\"\n    Calculate the total units of rain water that can be trapped\n    between the bars represented by `heights`.\n\n    Uses the two-pointer technique:\n    - Time complexity:  O(n)\n    - Space complexity: O(1)\n    \"\"\"\n    left, right = 0, len(heights) - 1\n    left_max = right_max = 0\n    water = 0\n\n    while left < right:\n        if heights[left] < heights[right]:\n            # The left side is the limiting side.\n            if heights[left] >= left_max:\n                left_max = heights[left]\n            else:\n                water += left_max - heights[left]\n            left += 1\n        else:\n            # The right side is the limiting side.\n            if heights[right] >= right_max:\n                right_max = heights[right]\n            else:\n                water += right_max - heights[right]\n            right -= 1\n\n    return water\n```"
+    },
+    "course_order": {
+      "pass": true,
+      "tokens": 1112,
+      "seconds": 81.4,
+      "tps": 13.9,
+      "closed_thinking": true,
+      "end_think_tags": 2,
+      "answer": "\n```python\nfrom collections import deque\n\ndef course_order(n: int, prereqs: list[list[int]]) -> list[int]:\n    \"\"\"\n    Return any valid order to take all n courses (0..n-1), or [] if impossible.\n    prereqs contains [a, b] meaning b must be taken before a.\n    \"\"\"\n    if n <= 0:\n        return []\n\n    # Build graph: edge b -> a (b is prerequisite of a)\n    adj = [set() for _ in range(n)]\n    indegree = [0] * n\n    for a, b in prereqs:\n        if b == a:  # self-dependency creates a cycle\n            return []\n        if a not in adj[b]:\n            adj[b].add(a)\n            indegree[a] += 1\n\n    # Initialize queue with all courses having no prerequisites\n    queue = deque(i for i in range(n) if indegree[i] == 0)\n    order = []\n\n    while queue:\n        course = queue.popleft()\n        order.append(course)\n        for nxt in adj[course]:\n            indegree[nxt] -= 1\n            if indegree[nxt] == 0:\n                queue.append(nxt)\n\n    return order if len(order) == n else []\n```"
+    },
+    "lis_length": {
+      "pass": true,
+      "tokens": 578,
+      "seconds": 43.3,
+      "tps": 13.7,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\nfrom bisect import bisect_left\n\ndef lis_length(nums: list[int]) -> int:\n    \"\"\"Return the length of the longest strictly increasing subsequence.\"\"\"\n    tails: list[int] = []\n    for x in nums:\n        pos = bisect_left(tails, x)\n        if pos == len(tails):\n            tails.append(x)\n        else:\n            tails[pos] = x\n    return len(tails)\n```"
+    }
+  }
+}

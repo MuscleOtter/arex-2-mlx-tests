@@ -1,0 +1,48 @@
+{
+  "build": "AREX-2-6bit",
+  "passed": 3,
+  "runs": [
+    {
+      "seed": 31,
+      "pass": true,
+      "tool_calls": [
+        "find_customer",
+        "list_orders",
+        "get_order",
+        "track_shipment"
+      ],
+      "turns": 5,
+      "tokens": 626,
+      "seconds": 96.0,
+      "final": "Here's the information for Dana Whitfield:\n\n**Most Expensive Order:** Order A-1042 ($342.00)\n- **Current Location:** Memphis\n- **Status:** Delayed\n- **Estimated Arrival:** October 9, 2026\n\n**Total Spent Across All Orders:** $529.75\n- Order A-1009: $129.50\n- Order A-1042: $342.00\n- Order A-1077: $58.25"
+    },
+    {
+      "seed": 32,
+      "pass": true,
+      "tool_calls": [
+        "find_customer",
+        "list_orders",
+        "get_order",
+        "track_shipment"
+      ],
+      "turns": 5,
+      "tokens": 567,
+      "seconds": 88.9,
+      "final": "Dana, here's what you asked for:\n\n- **Most expensive order:** Order A-1042 ($342.00), placed 2026-09-17. It's currently **delayed**, last seen in **Memphis**, with a new estimated arrival of **October 9, 2026**.\n- **Total spent across all 3 orders:** **$529.75** ($129.50 + $342.00 + $58.25)."
+    },
+    {
+      "seed": 33,
+      "pass": true,
+      "tool_calls": [
+        "find_customer",
+        "list_orders",
+        "get_order",
+        "track_shipment"
+      ],
+      "turns": 5,
+      "tokens": 505,
+      "seconds": 83.7,
+      "final": "Dana's most expensive order is **A-1042** ($342.00), which is currently in **Memphis** and is **delayed**, with an estimated arrival of **October 9, 2026**.\n\nAcross all her orders, she has spent a total of **$529.75** ($129.50 + $342.00 + $58.25)."
+    }
+  ]
+}

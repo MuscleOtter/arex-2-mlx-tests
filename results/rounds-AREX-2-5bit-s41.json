@@ -1,0 +1,218 @@
+{
+  "model": "AREX-2-5bit",
+  "seed": 41,
+  "tasks": {
+    "regex_match": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 2109,
+          "seconds": 178.1,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "text_justify": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1018,
+          "seconds": 84.2,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "strong_password_steps": {
+      "solved_in_round": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 328.6,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 351.6,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": true,
+          "tokens": 3547,
+          "seconds": 336.1,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "is_number": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1378,
+          "seconds": 113.6,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "number_to_words": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 3216,
+          "seconds": 264.2,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "skyline": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 330.4,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 939,
+          "seconds": 95.0,
+          "feedback": "Test:\nassert skyline([[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]])==[[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 46, in <module>\nAssertionError",
+          "hit_limit": false
+        },
+        {
+          "round": 3,
+          "pass": false,
+          "tokens": 1007,
+          "seconds": 105.5,
+          "feedback": "Test:\nassert skyline([[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]])==[[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]\n\nResult:\nFile \"<string>\", line 1\n    while heap and to_remove.get(-heap[0], 0) > 0:\nIndentationError: unexpected indent",
+          "hit_limit": false
+        }
+      ]
+    },
+    "shortest_palindrome": {
+      "solved_in_round": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 328.3,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 352.3,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": true,
+          "tokens": 3017,
+          "seconds": 291.1,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "count_smaller": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 792,
+          "seconds": 65.8,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "sliding_median": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 329.5,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 3637,
+          "seconds": 318.3,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "burst_balloons": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 969,
+          "seconds": 80.3,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "trap_rain_2d": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 792,
+          "seconds": 65.6,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "max_points_on_line": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 2156,
+          "seconds": 176.9,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    }
+  }
+}

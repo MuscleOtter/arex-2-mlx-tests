@@ -1,0 +1,78 @@
+{
+  "build": "AREX-2-6bit",
+  "load_seconds": 25.5,
+  "tests": {
+    "plain_answer": {
+      "pass": true,
+      "note": "",
+      "output": "391",
+      "prompt_tokens": 28,
+      "generation_tokens": 4,
+      "prompt_tps": 19.8,
+      "generation_tps": 14.3,
+      "peak_memory_gb": 23.1
+    },
+    "thinking_on": {
+      "pass": true,
+      "note": "thinking_closed=True",
+      "output": "We need answer simple time difference. Need compute minutes between 14:35 and 17:10 same day. 14:35 to 17:10 = 2h35m = 155 min. Need end with ANSWER: <number>. Final concise.\n</think>\nANSWER: 155",
+      "prompt_tokens": 91,
+      "generation_tokens": 77,
+      "prompt_tps": 80.6,
+      "generation_tps": 11.0,
+      "peak_memory_gb": 23.2
+    },
+    "tool_call_emitted": {
+      "pass": true,
+      "note": "parsed={'name': 'get_weather', 'arguments': {'city': 'Lisbon'}}",
+      "output": "<tool_call>\n<function=get_weather>\n<parameter=city>\nLisbon\n</parameter>\n</function>\n</tool_call>",
+      "prompt_tokens": 284,
+      "generation_tokens": 28,
+      "prompt_tps": 95.0,
+      "generation_tps": 11.0,
+      "peak_memory_gb": 23.6
+    },
+    "tool_result_used": {
+      "pass": true,
+      "note": "",
+      "output": "The current weather in Lisbon is 18\u00b0C with light rain.",
+      "prompt_tokens": 352,
+      "generation_tokens": 15,
+      "prompt_tps": 97.6,
+      "generation_tps": 11.6,
+      "peak_memory_gb": 23.7
+    },
+    "long_prompt_recall": {
+      "pass": true,
+      "note": "",
+      "output": "7341",
+      "prompt_tokens": 7040,
+      "generation_tokens": 5,
+      "prompt_tps": 92.0,
+      "generation_tps": 11.7,
+      "peak_memory_gb": 26.6
+    },
+    "image_input": {
+      "pass": true,
+      "note": "",
+      "output": "The text written in the image is \"MANGO 47\".  \nThe circle is red.",
+      "prompt_tokens": 269,
+      "generation_tokens": 21,
+      "prompt_tps": 70.3,
+      "generation_tps": 10.1,
+      "peak_memory_gb": 26.6
+    },
+    "write_speed": {
+      "pass": true,
+      "note": "",
+      "output": "```python\ndef merge_intervals(intervals):\n    \"\"\"Merge overlapping intervals and return the merged list.\"\"\"\n    if not intervals:\n        return []\n    intervals.sort(key=lambda x: x[0])\n    merged = [intervals[0]]\n    for start, end in intervals[1:]:\n        if start <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], end)\n        else:\n            merged.append([start, end])\n    return merged\n\nprint(merge_intervals([[1, 3], [2, 6], [8, 10], [15, 18]]))\nprint(merge_intervals([[1, 4], [4, 5]]))\nprint(merge_intervals([[1, 4], [0, 2]]))\n```",
+      "prompt_tokens": 31,
+      "generation_tokens": 184,
+      "prompt_tps": 52.9,
+      "generation_tps": 9.7,
+      "peak_memory_gb": 26.6
+    }
+  },
+  "peak_memory_gb": 26.6,
+  "all_pass": true
+}

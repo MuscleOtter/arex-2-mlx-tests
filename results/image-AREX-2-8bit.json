@@ -1,0 +1,62 @@
+{
+  "build": "AREX-2-8bit",
+  "questions": {
+    "invoice_number": {
+      "pass": true,
+      "answer": "Based on the invoice provided in the image, the invoice number is located near the top left, below the company name.\n\nThe invoice number is **HL-20417**.",
+      "prompt_tokens": 552
+    },
+    "invoice_total": {
+      "pass": true,
+      "answer": "The total due on this invoice is **484.27**.",
+      "prompt_tokens": 555
+    },
+    "invoice_row": {
+      "pass": true,
+      "answer": "Based on the invoice from Harbor Lane Supply Co.:\n\n- **Item**: Flour, 25 kg sack  \n- **Quantity (Qty)**: 12 sacks  \n- **Amount for that line**: 222.00\n\nSo, **12 sacks of flour** were ordered, and the amount for that line was **222.00**.",
+      "prompt_tokens": 563
+    },
+    "chart_tallest": {
+      "pass": true,
+      "answer": "Looking at the bar chart titled **\u201cUnits sold by region, Q3\u201d**:\n\n- **North**: 42 units  \n- **South**: 67 units  \n- **East**: 31 units  \n- **West**: 58 units  \n- **Central**: 25 units  \n\nThe tallest bar corresponds to the **South** region, with **67 units** sold.\n\n\u2705 **Answer: The South region sold th",
+      "prompt_tokens": 529
+    },
+    "chart_lowest": {
+      "pass": true,
+      "answer": "Looking at the bar chart titled **\u201cUnits sold by region, Q3\u201d**, we can compare the values for each region:\n\n- **North**: 42 units  \n- **South**: 67 units  \n- **East**: 31 units  \n- **West**: 58 units  \n- **Central**: 25 units  \n\nThe smallest value is **25**, which corresponds to the **Central** regi",
+      "prompt_tokens": 530
+    },
+    "chart_sum": {
+      "pass": true,
+      "answer": "To find the combined total for **North** and **West**, we add their respective values from the bar chart:\n\n- **North**: 42 units  \n- **West**: 58 units\n\n**Combined total = 42 + 58 = 100**\n\n\u2705 **Answer: 100**",
+      "prompt_tokens": 528
+    },
+    "shapes_count": {
+      "pass": true,
+      "answer": "3",
+      "prompt_tokens": 502
+    },
+    "shapes_squares": {
+      "pass": true,
+      "answer": "4",
+      "prompt_tokens": 503
+    },
+    "shapes_corner": {
+      "pass": true,
+      "answer": "The circle in the top-right corner is **magenta** (a bright purplish-pink color).",
+      "prompt_tokens": 500
+    },
+    "two_images": {
+      "pass": true,
+      "answer": "Based on the two images provided, the signs are identical except for the price of the lemonade.\n\nThe two prices shown are:\n- **$4.50** (on the first sign)\n- **$5.25** (on the second sign)",
+      "prompt_tokens": 470
+    },
+    "large_small_print": {
+      "pass": true,
+      "answer": "Based on the image provided, the document reference printed in the bottom-right corner is:\n\n**QR-7731-B**\n\nThis is followed by the page number \"Page 4 of 12\".",
+      "prompt_tokens": 3776
+    }
+  },
+  "passed": 11,
+  "peak_memory_gb": 32.6
+}

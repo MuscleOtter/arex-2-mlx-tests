@@ -1,0 +1,48 @@
+{
+  "build": "AREX-2-5bit",
+  "passed": 3,
+  "runs": [
+    {
+      "seed": 31,
+      "pass": true,
+      "tool_calls": [
+        "find_customer",
+        "list_orders",
+        "get_order",
+        "track_shipment"
+      ],
+      "turns": 5,
+      "tokens": 588,
+      "seconds": 94.7,
+      "final": "Dana, here's the information:\n\n**Your most expensive order:** Order A-1042 for **$342.00**, placed on September 17, 2026.\n\n**Current status:** The shipment (tracking #TRK-88213) is currently **delayed** and is in **Memphis**. The new estimated arrival date is **October 9, 2026**.\n\n**Total spent across all your orders:** **$529.75**"
+    },
+    {
+      "seed": 32,
+      "pass": true,
+      "tool_calls": [
+        "find_customer",
+        "list_orders",
+        "get_order",
+        "track_shipment"
+      ],
+      "turns": 5,
+      "tokens": 492,
+      "seconds": 85.6,
+      "final": "Dana, your most expensive order is **A-1042** ($342.00), placed on 2026-09-17. It's currently **delayed in Memphis** with an estimated arrival of **October 9, 2026**.\n\nAcross all three of your orders, your total spent is **$529.75**."
+    },
+    {
+      "seed": 33,
+      "pass": true,
+      "tool_calls": [
+        "find_customer",
+        "list_orders",
+        "get_order",
+        "track_shipment"
+      ],
+      "turns": 5,
+      "tokens": 491,
+      "seconds": 81.5,
+      "final": "Dana, your most expensive order is **A-1042** ($342.00). It's currently **delayed**, sitting in **Memphis**, with an estimated arrival of **October 9, 2026**.\n\nAcross all three of your orders, your total spend is **$529.75**."
+    }
+  ]
+}

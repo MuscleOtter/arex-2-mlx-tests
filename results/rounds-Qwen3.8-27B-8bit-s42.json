@@ -1,0 +1,258 @@
+{
+  "model": "Qwen3.8-27B-8bit",
+  "seed": 42,
+  "tasks": {
+    "regex_match": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 492.5,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 516.5,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 545.8,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        }
+      ]
+    },
+    "text_justify": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 4000,
+          "seconds": 493.4,
+          "feedback": "",
+          "hit_limit": true
+        }
+      ]
+    },
+    "strong_password_steps": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 494.0,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 518.2,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 542.8,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        }
+      ]
+    },
+    "is_number": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1606,
+          "seconds": 199.4,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "number_to_words": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 2527,
+          "seconds": 311.6,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "skyline": {
+      "solved_in_round": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 494.3,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 522.5,
+          "feedback": "Test:\nassert skyline([])==[]\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 31, in <module>\nAssertionError",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": true,
+          "tokens": 2451,
+          "seconds": 346.9,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "shortest_palindrome": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 493.0,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 520.0,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 542.2,
+          "feedback": "Test:\nassert shortest_palindrome('aacecaaa')=='aaacecaaa'\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 26, in <module>\nAssertionError",
+          "hit_limit": true
+        }
+      ]
+    },
+    "count_smaller": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 493.0,
+          "feedback": "Test:\nassert count_smaller([5,2,6,1])==[2,1,1,0]\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 4, in <module>\nAssertionError",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 3735,
+          "seconds": 488.7,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "sliding_median": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 493.4,
+          "feedback": "Test:\nassert sliding_median([1,3,-1,-3,5,3,6,7],3)==[1,-1,-1,3,5,6]\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nNameError: name 'bit' is not defined. Did you mean: 'bin'?",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 4000,
+          "seconds": 517.1,
+          "feedback": "",
+          "hit_limit": true
+        }
+      ]
+    },
+    "burst_balloons": {
+      "solved_in_round": 3,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 493.5,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 530.0,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": true,
+          "tokens": 4000,
+          "seconds": 563.2,
+          "feedback": "",
+          "hit_limit": true
+        }
+      ]
+    },
+    "trap_rain_2d": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 2132,
+          "seconds": 262.7,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "max_points_on_line": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 3481,
+          "seconds": 428.9,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    }
+  }
+}

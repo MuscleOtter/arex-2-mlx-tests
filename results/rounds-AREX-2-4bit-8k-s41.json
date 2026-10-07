@@ -1,0 +1,210 @@
+{
+  "model": "AREX-2-4bit-8k",
+  "seed": 41,
+  "tasks": {
+    "regex_match": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 2603,
+          "seconds": 189.6,
+          "feedback": "",
+          "hit_limit": false,
+          "end_think_tags": 2,
+          "repeated_line_share": 0.058,
+          "thinking_chars": 6984,
+          "answer_chars": 1151
+        }
+      ]
+    },
+    "text_justify": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 7334,
+          "seconds": 551.8,
+          "feedback": "",
+          "hit_limit": false,
+          "end_think_tags": 1,
+          "repeated_line_share": 0.2,
+          "thinking_chars": 24219,
+          "answer_chars": 1786
+        }
+      ]
+    },
+    "strong_password_steps": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 8000,
+          "seconds": 612.4,
+          "feedback": "Test:\nassert strong_password_steps('a')==5\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 38, in <module>\nNameError: name 'strong_password_steps' is not defined",
+          "hit_limit": true,
+          "end_think_tags": 0,
+          "repeated_line_share": 0.161,
+          "thinking_chars": 26388,
+          "answer_chars": 0
+        }
+      ]
+    },
+    "is_number": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1048,
+          "seconds": 77.2,
+          "feedback": "",
+          "hit_limit": false,
+          "end_think_tags": 1,
+          "repeated_line_share": 0.103,
+          "thinking_chars": 3047,
+          "answer_chars": 479
+        }
+      ]
+    },
+    "number_to_words": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4242,
+          "seconds": 319.8,
+          "feedback": "Test:\nassert number_to_words(123)=='One Hundred Twenty Three'\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 53, in <module>\nAssertionError",
+          "hit_limit": false,
+          "end_think_tags": 1,
+          "repeated_line_share": 0.058,
+          "thinking_chars": 11998,
+          "answer_chars": 1547
+        }
+      ]
+    },
+    "skyline": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 5307,
+          "seconds": 379.4,
+          "feedback": "",
+          "hit_limit": false,
+          "end_think_tags": 1,
+          "repeated_line_share": 0.138,
+          "thinking_chars": 17877,
+          "answer_chars": 1312
+        }
+      ]
+    },
+    "shortest_palindrome": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 7783,
+          "seconds": 556.7,
+          "feedback": "",
+          "hit_limit": false,
+          "end_think_tags": 5,
+          "repeated_line_share": 0.129,
+          "thinking_chars": 23165,
+          "answer_chars": 2606
+        }
+      ]
+    },
+    "count_smaller": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 4002,
+          "seconds": 277.3,
+          "feedback": "",
+          "hit_limit": false,
+          "end_think_tags": 2,
+          "repeated_line_share": 0.188,
+          "thinking_chars": 12276,
+          "answer_chars": 899
+        }
+      ]
+    },
+    "sliding_median": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 8000,
+          "seconds": 567.4,
+          "feedback": "Test:\nassert sliding_median([1,3,-1,-3,5,3,6,7],3)==[1,-1,-1,3,5,6]\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 13, in <module>\nNameError: name 'sliding_median' is not defined",
+          "hit_limit": true,
+          "end_think_tags": 0,
+          "repeated_line_share": 0.088,
+          "thinking_chars": 27812,
+          "answer_chars": 0
+        }
+      ]
+    },
+    "burst_balloons": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1442,
+          "seconds": 102.8,
+          "feedback": "",
+          "hit_limit": false,
+          "end_think_tags": 1,
+          "repeated_line_share": 0.167,
+          "thinking_chars": 3808,
+          "answer_chars": 569
+        }
+      ]
+    },
+    "trap_rain_2d": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 8000,
+          "seconds": 579.9,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true,
+          "end_think_tags": 2839,
+          "repeated_line_share": 0.115,
+          "thinking_chars": 8833,
+          "answer_chars": 25550
+        }
+      ]
+    },
+    "max_points_on_line": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 4306,
+          "seconds": 306.1,
+          "feedback": "",
+          "hit_limit": false,
+          "end_think_tags": 1,
+          "repeated_line_share": 0.087,
+          "thinking_chars": 14149,
+          "answer_chars": 1381
+        }
+      ]
+    }
+  }
+}

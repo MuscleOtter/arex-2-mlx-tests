@@ -1,0 +1,77 @@
+{
+  "label": "Qwen3.8-27B-8bit",
+  "trials": [
+    {
+      "task": "intervals",
+      "pass_no": 1,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 226.6,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "durations",
+      "pass_no": 1,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 322.8,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "inventory",
+      "pass_no": 1,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 119.2,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "intervals",
+      "pass_no": 2,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 115.3,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "durations",
+      "pass_no": 2,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 149.7,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "inventory",
+      "pass_no": 2,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 134.4,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    }
+  ]
+}

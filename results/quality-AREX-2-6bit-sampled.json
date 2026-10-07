@@ -1,0 +1,167 @@
+{
+  "build": "AREX-2-6bit-sampled",
+  "tasks": {
+    "merge_intervals": {
+      "pass": true,
+      "tokens": 231,
+      "seconds": 24.4,
+      "tps": 10.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef merge_intervals(intervals: list[list[int]]) -> list[list[int]]:\n    if not intervals:\n        return []\n\n    intervals.sort(key=lambda x: x[0])\n\n    merged = [list(intervals[0])]\n    for start, end in intervals[1:]:\n        last = merged[-1]\n        if start <= last[1]:\n            last[1] = max(last[1], end)\n        else:\n            merged.append([start, end])\n\n    return merged\n```"
+    },
+    "int_to_roman": {
+      "pass": true,
+      "tokens": 563,
+      "seconds": 59.3,
+      "tps": 9.7,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef int_to_roman(n: int) -> str:\n    \"\"\"Convert an integer from 1 to 3999 inclusive to a Roman numeral.\"\"\"\n    if not isinstance(n, int) or isinstance(n, bool):\n        raise TypeError(\"input must be an integer\")\n    if n < 1 or n > 3999:\n        raise ValueError(\"input must be between 1 and 3999 inclusive\")\n\n    values = [\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    ]\n\n    result = []\n    for value, symbol in values:\n        while n >= value:\n            result.append(symbol)\n            n -= value\n    return \"\".join(result)\n```"
+    },
+    "longest_palindrome": {
+      "pass": true,
+      "tokens": 532,
+      "seconds": 57.3,
+      "tps": 9.6,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef longest_palindrome(s: str) -> str:\n    if not s:\n        return \"\"\n\n    best_start = 0\n    best_len = 1\n\n    def expand(left: int, right: int) -> None:\n        nonlocal best_start, best_len\n        while left >= 0 and right < len(s) and s[left] == s[right]:\n            left -= 1\n            right += 1\n        length = right - left - 1\n        start = left + 1\n        if length > best_len:\n            best_len = length\n            best_start = start\n\n    for i in range(len(s)):\n        expand(i, i)        # odd length\n        expand(i, i + 1)    # even length\n\n    return s[best_start:best_start + best_len]\n```"
+    },
+    "eval_rpn": {
+      "pass": true,
+      "tokens": 478,
+      "seconds": 50.3,
+      "tps": 9.8,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef eval_rpn(tokens: list[str]) -> int:\n    stack: list[int] = []\n    ops = {\n        \"+\": lambda a, b: a + b,\n        \"-\": lambda a, b: a - b,\n        \"*\": lambda a, b: a * b,\n        \"/\": lambda a, b: trunc_div(a, b),\n    }\n\n    def trunc_div(a: int, b: int) -> int:\n        q = abs(a) // abs(b)\n        return -q if (a < 0) ^ (b < 0) else q\n\n    for token in tokens:\n        if token in ops:\n            b = stack.pop()\n            a = stack.pop()\n            stack.append(ops[token](a, b))\n        else:\n            stack.append(int(token))\n\n    return stack[-1]\n```"
+    },
+    "spiral_order": {
+      "pass": true,
+      "tokens": 1271,
+      "seconds": 130.6,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef spiral_order(matrix: list[list[int]]) -> list[int]:\n    if not matrix:\n        return []\n    \n    result = []\n    top, bottom = 0, len(matrix) - 1\n    left, right = 0, len(matrix[0]) - 1\n    \n    while top <= bottom and left <= right:\n        for j in range(left, right + 1):\n            result.append(matrix[top][j])\n        top += 1\n        \n        for i in range(top, bottom + 1):\n            result.append(matrix[i][right])\n        right -= 1\n        \n        if top <= bottom:\n            for j in range(right, left - 1, -1):\n                result.append(matrix[bottom][j])\n            bottom -= 1\n            \n        if left <= right:\n            for i in range(bottom, top - 1, -1):\n                result.append(matrix[i][left])\n            left += 1\n            \n    return result\n```"
+    },
+    "min_window": {
+      "pass": true,
+      "tokens": 1012,
+      "seconds": 104.6,
+      "tps": 9.8,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\nfrom collections import Counter\n\ndef min_window(s: str, t: str) -> str:\n    \"\"\"Return the shortest substring of s that contains all characters of t\n    (with multiplicity). If there are multiple shortest substrings, return the\n    leftmost one. Return '' if no such substring exists.\"\"\"\n    if not t:\n        return ''\n    \n    required = Counter(t)\n    window = Counter()\n    required_count = len(required)  # number of unique chars we need\n    formed = 0  # number of unique chars that have met their required count\n    \n    left = 0\n    min_len = len(s) + 1\n    min_start = 0\n    \n    for right, char in enumerate(s):\n        window[char] += 1\n        if char in required and window[char] == required[char]:\n            formed += 1\n        \n        # Shrink window as much as possible while still valid\n        while formed == required_count:\n            if right - left + 1 < min_len:\n                min_len = right - left + 1\n                min_start = left\n            \n            left_char = s[left]\n            if left_char in required and window[left_char] == required[left_char]:\n                formed -= 1\n            window[left_char] -= 1\n            left += 1\n    \n    return s[min_start:min_start + min_len] if min_len <= len(s) else ''\n```"
+    },
+    "decode_string": {
+      "pass": true,
+      "tokens": 494,
+      "seconds": 51.4,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef decode_string(s: str) -> str:\n    stack = []\n    num = 0\n    current = \"\"\n\n    for ch in s:\n        if ch.isdigit():\n            num = num * 10 + int(ch)\n        elif ch == '[':\n            stack.append((current, num))\n            current = \"\"\n            num = 0\n        elif ch == ']':\n            prev, repeat = stack.pop()\n            current = prev + current * repeat\n        else:\n            current += ch\n\n    return current\n```"
+    },
+    "next_permutation": {
+      "pass": true,
+      "tokens": 284,
+      "seconds": 30.1,
+      "tps": 10.0,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef next_permutation(nums: list[int]) -> list[int]:\n    a = nums[:]\n    n = len(a)\n\n    i = n - 2\n    while i >= 0 and a[i] >= a[i + 1]:\n        i -= 1\n\n    if i < 0:\n        return sorted(a)\n\n    j = n - 1\n    while a[j] <= a[i]:\n        j -= 1\n\n    a[i], a[j] = a[j], a[i]\n    a[i + 1:] = reversed(a[i + 1:])\n    return a\n```"
+    },
+    "top_k_frequent": {
+      "pass": true,
+      "tokens": 272,
+      "seconds": 29.1,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\nfrom collections import Counter\n\ndef top_k_frequent(words: list[str], k: int) -> list[str]:\n    counts = Counter(words)\n    return [word for word, _ in sorted(counts.items(), key=lambda item: (-item[1], item[0]))[:k]]\n```"
+    },
+    "simplify_path": {
+      "pass": true,
+      "tokens": 497,
+      "seconds": 51.6,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef simplify_path(path: str) -> str:\n    \"\"\"\n    Canonicalise an absolute Unix path.\n\n    - Collapses repeated slashes.\n    - Resolves '.' and '..' components.\n    - '...' is treated as a normal directory/file name.\n    - Returns the path without a trailing slash (except for root '/').\n    \"\"\"\n    stack = []\n    for part in path.split('/'):\n        if part == '' or part == '.':\n            continue\n        if part == '..':\n            if stack:\n                stack.pop()\n        else:\n            stack.append(part)\n    return '/' + '/'.join(stack)\n```"
+    },
+    "calculate": {
+      "pass": true,
+      "tokens": 2478,
+      "seconds": 253.3,
+      "tps": 9.8,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "() -> int:\n        nonlocal i\n        skip_spaces()\n        start = i\n        while i < n and s[i].isdigit():\n            i += 1\n        if i == start:\n            raise ValueError(\"Expected a number\")\n        return int(s[start:i])\n\n    def trunc_div(a: int, b: int) -> int:\n        if b == 0:\n            raise ZeroDivisionError(\"division by zero\")\n        sign = -1 if (a < 0) != (b < 0) else 1\n        return sign * (abs(a) // abs(b))\n\n    def parse_expr() -> int:\n        value = parse_term()\n        while True:\n            if consume('+'):\n                value += parse_term()\n            elif consume('-'):\n                value -= parse_term()\n            else:\n                break\n        return value\n\n    def parse_term() -> int:\n        value = parse_factor()\n        while True:\n            if consume('*'):\n                value *= parse_factor()\n            elif consume('/'):\n                value = trunc_div(value, parse_factor())\n            else:\n                break\n        return value\n\n    def parse_factor() -> int:\n        if consume('+'):\n            return parse_factor()\n        if consume('-'):\n            return -parse_factor()\n        return parse_atom()\n\n    def parse_atom() -> int:\n        if consume('('):\n            value = parse_expr()\n            expect(')')\n            return value\n        return parse_number()\n\n    result = parse_expr()\n    skip_spaces()\n    if i != n:\n        raise ValueError(\"Unexpected trailing characters\")\n    return result\n```"
+    },
+    "count_islands": {
+      "pass": true,
+      "tokens": 830,
+      "seconds": 85.0,
+      "tps": 10.0,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\nfrom collections import deque\n\n\ndef count_islands(grid: list[list[str]]) -> int:\n    if not grid:\n        return 0\n\n    rows = len(grid)\n    visited = [[False] * len(row) for row in grid]\n    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]\n    count = 0\n\n    for r in range(rows):\n        for c in range(len(grid[r])):\n            if grid[r][c] == \"1\" and not visited[r][c]:\n                count += 1\n                queue = deque([(r, c)])\n                visited[r][c] = True\n\n                while queue:\n                    cr, cc = queue.popleft()\n\n                    for dr, dc in directions:\n                        nr, nc = cr + dr, cc + dc\n\n                        if (\n                            0 <= nr < rows\n                            and 0 <= nc < len(grid[nr])\n                            and not visited[nr][nc]\n                            and grid[nr][nc] == \"1\"\n                        ):\n                            visited[nr][nc] = True\n                            queue.append((nr, nc))\n\n    return count\n```"
+    },
+    "edit_distance": {
+      "pass": true,
+      "tokens": 689,
+      "seconds": 70.7,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef edit_distance(a: str, b: str) -> int:\n    \"\"\"Return the Levenshtein distance between strings a and b.\n\n    Operations allowed: insert, delete, substitute (each costs 1).\n    Uses O(min(len(a), len(b))) extra space.\n    \"\"\"\n    # Ensure b is the shorter string to minimize memory usage.\n    if len(b) > len(a):\n        a, b = b, a\n\n    # dp[j] = edit distance between a[:i] and b[:j] for the current row i.\n    dp = list(range(len(b) + 1))\n\n    for i, ca in enumerate(a, start=1):\n        prev = dp[0]  # dp[i-1][0]\n        dp[0] = i     # dp[i][0] = i deletions\n        for j, cb in enumerate(b, start=1):\n            cur = dp[j]  # dp[i-1][j]\n            cost = 0 if ca == cb else 1\n            dp[j] = min(\n                dp[j] + 1,       # delete ca\n                dp[j - 1] + 1,   # insert cb\n                prev + cost      # substitute or match\n            )\n            prev = cur\n\n    return dp[-1]\n```"
+    },
+    "largest_rectangle": {
+      "pass": true,
+      "tokens": 2091,
+      "seconds": 217.4,
+      "tps": 9.7,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef largest_rectangle(heights: list[int]) -> int:\n    stack = []  # indices of bars with increasing heights\n    max_area = 0\n    n = len(heights)\n\n    for i in range(n + 1):\n        cur = heights[i] if i < n else 0  # sentinel 0 at the end\n        while stack and cur < heights[stack[-1]]:\n            h = heights[stack.pop()]\n            left = stack[-1] if stack else -1\n            width = i - left - 1\n            area = h * width\n            if area > max_area:\n                max_area = area\n        if i < n:\n            stack.append(i)\n\n    return max_area\n```"
+    },
+    "trap_water": {
+      "pass": true,
+      "tokens": 308,
+      "seconds": 32.3,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef trap_water(heights: list[int]) -> int:\n    \"\"\"\n    Compute the total units of rain water that can be trapped between bars.\n\n    Uses a two-pointer approach with O(n) time and O(1) extra space.\n    \"\"\"\n    if not heights:\n        return 0\n\n    left, right = 0, len(heights) - 1\n    left_max = right_max = 0\n    water = 0\n\n    while left < right:\n        if heights[left] < heights[right]:\n            if heights[left] >= left_max:\n                left_max = heights[left]\n            else:\n                water += left_max - heights[left]\n            left += 1\n        else:\n            if heights[right] >= right_max:\n                right_max = heights[right]\n            else:\n                water += right_max - heights[right]\n            right -= 1\n\n    return water\n```"
+    },
+    "word_break": {
+      "pass": true,
+      "tokens": 509,
+      "seconds": 53.1,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\ndef word_break(s: str, words: list[str]) -> bool:\n    n = len(s)\n    dp = [False] * (n + 1)\n    dp[0] = True\n\n    word_set = set(words)\n    max_len = max((len(w) for w in words), default=0)\n\n    for i in range(1, n + 1):\n        for length in range(1, min(max_len, i) + 1):\n            if dp[i - length] and s[i - length:i] in word_set:\n                dp[i] = True\n                break\n\n    return dp[n]\n```"
+    },
+    "course_order": {
+      "pass": true,
+      "tokens": 622,
+      "seconds": 64.8,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\nfrom collections import deque\nfrom typing import List\n\ndef course_order(n: int, prereqs: list[list[int]]) -> list[int]:\n    adj = [set() for _ in range(n)]\n    indegree = [0] * n\n\n    for a, b in prereqs:\n        if a not in adj[b]:\n            adj[b].add(a)\n            indegree[a] += 1\n\n    queue = deque(i for i in range(n) if indegree[i] == 0)\n    order = []\n\n    while queue:\n        course = queue.popleft()\n        order.append(course)\n        for nxt in adj[course]:\n            indegree[nxt] -= 1\n            if indegree[nxt] == 0:\n                queue.append(nxt)\n\n    return order if len(order) == n else []\n```"
+    },
+    "lis_length": {
+      "pass": true,
+      "tokens": 274,
+      "seconds": 28.9,
+      "tps": 9.9,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n```python\nfrom bisect import bisect_left\n\ndef lis_length(nums: list[int]) -> int:\n    tails: list[int] = []\n    for x in nums:\n        i = bisect_left(tails, x)\n        if i == len(tails):\n            tails.append(x)\n        else:\n            tails[i] = x\n    return len(tails)\n```"
+    }
+  }
+}

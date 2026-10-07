@@ -1,0 +1,62 @@
+{
+  "build": "AREX-2-5bit",
+  "questions": {
+    "invoice_number": {
+      "pass": true,
+      "answer": "The invoice number is **HL-20417**.",
+      "prompt_tokens": 552
+    },
+    "invoice_total": {
+      "pass": true,
+      "answer": "The total due on this invoice is **484.27**.",
+      "prompt_tokens": 555
+    },
+    "invoice_row": {
+      "pass": true,
+      "answer": "Let\u2019s break this down step by step.\n\nWe are looking at the invoice from **Harbor Lane Supply Co.** for **Northgate Bakery**.\n\nThe item in question is:\n\n> **Flour, 25 kg sack**\n\nFrom the table:\n\n- **Qty (Quantity)**: 12  \n- **Unit price**: 18.50  \n- **Amount**: 222.00\n\nSo, to answer your question dir",
+      "prompt_tokens": 563
+    },
+    "chart_tallest": {
+      "pass": true,
+      "answer": "Looking at the bar chart titled **\"Units sold by region, Q3\"**, we can compare the heights of the bars and their labeled values:\n\n- **North**: 42 units  \n- **South**: 67 units  \n- **East**: 31 units  \n- **West**: 58 units  \n- **Central**: 25 units  \n\nThe tallest bar is **South**, with **67 units** s",
+      "prompt_tokens": 529
+    },
+    "chart_lowest": {
+      "pass": true,
+      "answer": "Looking at the bar chart titled **\u201cUnits sold by region, Q3\u201d**, we can compare the values for each region:\n\n- **North**: 42 units  \n- **South**: 67 units  \n- **East**: 31 units  \n- **West**: 58 units  \n- **Central**: 25 units  \n\nThe smallest value is **25**, which corresponds to the **Central** regi",
+      "prompt_tokens": 530
+    },
+    "chart_sum": {
+      "pass": true,
+      "answer": "To find the combined total for **North** and **West**, we add their respective values from the bar chart:\n\n- **North**: 42 units  \n- **West**: 58 units  \n\n**Combined total = 42 + 58 = 100**\n\n\u2705 **Answer: 100**",
+      "prompt_tokens": 528
+    },
+    "shapes_count": {
+      "pass": true,
+      "answer": "3",
+      "prompt_tokens": 502
+    },
+    "shapes_squares": {
+      "pass": true,
+      "answer": "4",
+      "prompt_tokens": 503
+    },
+    "shapes_corner": {
+      "pass": true,
+      "answer": "The circle in the top-right corner is **magenta** (a bright purplish-pink color).\n\nLooking at the image:\n- Top row, from left to right: green triangle, yellow-orange circle, blue square, **magenta circle**.\n- The magenta circle is clearly in the top-right position.\n\n\u2705 Final Answer: **Magenta**",
+      "prompt_tokens": 500
+    },
+    "two_images": {
+      "pass": true,
+      "answer": "You're right, the two signs are identical except for the price of the lemonade.\n\nBased on the images provided:\n- The first sign shows the price as **$4.50**.\n- The second sign shows the price as **$5.25**.\n\nBoth signs advertise \"FRESH LEMONADE\" and state the hours as \"Open 9 to 5 daily\".",
+      "prompt_tokens": 470
+    },
+    "large_small_print": {
+      "pass": true,
+      "answer": "Based on the image provided, the document reference printed in the bottom-right corner is:\n\n**QR-7731-B**\n\nThis is part of the full line: \"Document ref: QR-7731-B | Page 4 of 12\".",
+      "prompt_tokens": 3776
+    }
+  },
+  "passed": 11,
+  "peak_memory_gb": 22.6
+}

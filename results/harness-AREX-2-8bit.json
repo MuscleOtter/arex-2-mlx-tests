@@ -1,0 +1,77 @@
+{
+  "label": "AREX-2-8bit",
+  "trials": [
+    {
+      "task": "intervals",
+      "pass_no": 1,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 244.2,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "durations",
+      "pass_no": 1,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 192.6,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "inventory",
+      "pass_no": 1,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 117.7,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "intervals",
+      "pass_no": 2,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 101.3,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "durations",
+      "pass_no": 2,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 222.0,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    },
+    {
+      "task": "inventory",
+      "pass_no": 2,
+      "failing_before": true,
+      "tests_pass": true,
+      "tests_untouched": true,
+      "passed": true,
+      "seconds": 129.8,
+      "exit_code": 0,
+      "said_done": true,
+      "test_output": ""
+    }
+  ]
+}

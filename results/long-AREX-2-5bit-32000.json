@@ -1,0 +1,14 @@
+{
+  "build": "AREX-2-5bit",
+  "prompt_tokens": 31716,
+  "prompt_tps": 90.6,
+  "seconds": 352.0,
+  "peak_memory_gb": 27.5,
+  "found": {
+    "Lisbon": true,
+    "Osaka": true,
+    "Tulsa": true
+  },
+  "output": "7341, 2086, 9517",
+  "pass": true
+}

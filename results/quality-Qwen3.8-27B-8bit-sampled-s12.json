@@ -1,0 +1,167 @@
+{
+  "build": "Qwen3.8-27B-8bit-sampled-s12",
+  "tasks": {
+    "merge_intervals": {
+      "pass": true,
+      "tokens": 668,
+      "seconds": 83.8,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef merge_intervals(intervals: list[list[int]]) -> list[list[int]]:\n    if not intervals:\n        return []\n\n    sorted_intervals = sorted(intervals, key=lambda x: (x[0], x[1]))\n    merged = [[sorted_intervals[0][0], sorted_intervals[0][1]]]\n\n    for start, end in sorted_intervals[1:]:\n        if start <= merged[-1][1]:\n            merged[-1][1] = max(merged[-1][1], end)\n        else:\n            merged.append([start, end])\n\n    return merged\n```"
+    },
+    "int_to_roman": {
+      "pass": true,
+      "tokens": 802,
+      "seconds": 98.9,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef int_to_roman(n: int) -> str:\n    if n < 1 or n > 3999:\n        raise ValueError(\"Input must be between 1 and 3999\")\n\n    values = (\n        (1000, \"M\"),\n        (900, \"CM\"),\n        (500, \"D\"),\n        (400, \"CD\"),\n        (100, \"C\"),\n        (90, \"XC\"),\n        (50, \"L\"),\n        (40, \"XL\"),\n        (10, \"X\"),\n        (9, \"IX\"),\n        (5, \"V\"),\n        (4, \"IV\"),\n        (1, \"I\"),\n    )\n\n    result = []\n    for value, numeral in values:\n        while n >= value:\n            result.append(numeral)\n            n -= value\n\n    return \"\".join(result)\n```"
+    },
+    "longest_palindrome": {
+      "pass": false,
+      "tokens": 4000,
+      "seconds": 493.6,
+      "tps": 8.1,
+      "closed_thinking": false,
+      "end_think_tags": 0,
+      "answer": "gth L'? If L' > L update. If L' == L impossible parity? Unless L=0? d2 length 0 ignored? best_len initial 1. d2 length 0 not >. Fine.\n\nAlternative transformed string approach may be simpler to reason tie? But d arrays okay.\n\nNeed ensure no imports. Function signature exactly longest_palindrome(s: str) -> str.\n\nCould there be issue with best_len initial 0 and best_start 0? For n>0, best_len=1. If n=0 return. Good.\n\nLet's think about tie by start if multiple longest with same length but different centers. Our scan over i from 0 to n-1 and update only >. Is it possible a palindrome of max length L with earlier start is centered at a larger i because it has a different effective center due to being not maximal? For a palindrome length L, center is fixed (in terms of original indices half-integer). Start = center - (L-1)/2 for odd, center - L/2 for even. Larger center always larger start. So earlier start => earlier center. Thus first center that can produce length L (with max radius exactly or at least L/2) will have earliest start. But what if earlier center has max radius > L/2 (longer) but that longer palindrome is not actually valid due to? max radius computed valid, so longer exists. Then L not max. So safe.\n\nHowever, there is subtle scenario: We scan i and update if max palindrome length at center i > best_len. Suppose final max length L. The earliest start among length L has center c*. At center c*, max radius may be > L/2? impossible if L is global max? Wait if max radius"
+    },
+    "eval_rpn": {
+      "pass": true,
+      "tokens": 1140,
+      "seconds": 140.8,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "on\ndef eval_rpn(tokens: list[str]) -> int:\n    \"\"\"\n    Evaluate a Reverse Polish Notation expression consisting of integer tokens\n    and the binary operators +, -, *, and /.\n\n    Division truncates toward zero.\n    \"\"\"\n    stack: list[int] = []\n\n    def truncate_divide(a: int, b: int) -> int:\n        if b == 0:\n            raise ZeroDivisionError(\"division by zero\")\n        quotient = abs(a) // abs(b)\n        if (a < 0) ^ (b < 0):\n            return -quotient\n        return quotient\n\n    for token in tokens:\n        if token == \"+\":\n            if len(stack) < 2:\n                raise ValueError(\"invalid RPN expression\")\n            b = stack.pop()\n            a = stack.pop()\n            stack.append(a + b)\n        elif token == \"-\":\n            if len(stack) < 2:\n                raise ValueError(\"invalid RPN expression\")\n            b = stack.pop()\n            a = stack.pop()\n            stack.append(a - b)\n        elif token == \"*\":\n            if len(stack) < 2:\n                raise ValueError(\"invalid RPN expression\")\n            b = stack.pop()\n            a = stack.pop()\n            stack.append(a * b)\n        elif token == \"/\":\n            if len(stack) < 2:\n                raise ValueError(\"invalid RPN expression\")\n            b = stack.pop()\n            a = stack.pop()\n            stack.append(truncate_divide(a, b))\n        else:\n            stack.append(int(token))\n\n    if len(stack) != 1:\n        raise ValueError(\"invalid RPN expression\")\n\n    return stack[0]\n```"
+    },
+    "spiral_order": {
+      "pass": true,
+      "tokens": 669,
+      "seconds": 83.1,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef spiral_order(matrix: list[list[int]]) -> list[int]:\n    if not matrix or not matrix[0]:\n        return []\n\n    result = []\n    top, bottom = 0, len(matrix) - 1\n    left, right = 0, len(matrix[0]) - 1\n\n    while top <= bottom and left <= right:\n        for j in range(left, right + 1):\n            result.append(matrix[top][j])\n        top += 1\n\n        for i in range(top, bottom + 1):\n            result.append(matrix[i][right])\n        right -= 1\n\n        if top <= bottom:\n            for j in range(right, left - 1, -1):\n                result.append(matrix[bottom][j])\n            bottom -= 1\n\n        if left <= right:\n            for i in range(bottom, top - 1, -1):\n                result.append(matrix[i][left])\n            left += 1\n\n    return result\n```"
+    },
+    "min_window": {
+      "pass": false,
+      "tokens": 4000,
+      "seconds": 493.1,
+      "tps": 8.1,
+      "closed_thinking": false,
+      "end_think_tags": 0,
+      "answer": "ctually need from2 to1 (not 0), missing remains2? Let's carefully: t='aa', need A=2, missing=2. end0 ch A: need A=1, not 0, missing2. end1 A: need A=0, missing1? That says one missing still, but we have two As, missing should 0. Wait missing initialized len(t)=2. Each time need reaches 0? But need is total count of required remaining, not per character? For t='aa', need A=2. After first A, remaining count A=1, missing should 1. After second A, remaining count A=0, missing should 0. But our condition `if need[ch] == 0: missing -= 1` only decrements once when total remaining for that char reaches zero, not per unit. So missing is not number of units remaining, it's number of distinct characters whose remaining count is zero? That can't work for multiplicity. Need rethink.\n\nClassic approach with `need` as required counts and `missing` as number of characters (units) not yet matched. When adding char with need count >0, missing decreases by 1. When removing char with need count ==0 (i.e., it was extra? Actually if need count is 0 means we have exactly fulfilled requirement; removing it makes need 1, missing increases by 1). For t='aa', initial need A=2 missing=2. end0: need A from2 to1; since before decrement >0? missing-- =>1. end1: need A from1 to0; missing-- =>0. So condition is: if need[ch] > 0 before decrement, missing -= 1. Or after decrement, if need[ch] <= 0? For first: after 1 not <=0; no. second: after0 <=0 yes. But if after negative extra: before 0? no. Condition after"
+    },
+    "decode_string": {
+      "pass": true,
+      "tokens": 587,
+      "seconds": 73.0,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef decode_string(s: str) -> str:\n    stack = []\n    current = []\n    num = 0\n\n    for ch in s:\n        if ch.isdigit():\n            num = num * 10 + int(ch)\n        elif ch == '[':\n            stack.append((current, num))\n            current = []\n            num = 0\n        elif ch == ']':\n            prev, repeat = stack.pop()\n            current = prev + current * repeat\n        else:\n            current.append(ch)\n\n    return ''.join(current)\n```"
+    },
+    "next_permutation": {
+      "pass": true,
+      "tokens": 919,
+      "seconds": 113.8,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef next_permutation(nums: list[int]) -> list[int]:\n    arr = nums.copy()\n    n = len(arr)\n\n    i = n - 2\n    while i >= 0 and arr[i] >= arr[i + 1]:\n        i -= 1\n\n    if i < 0:\n        return sorted(arr)\n\n    j = n - 1\n    while arr[j] <= arr[i]:\n        j -= 1\n\n    arr[i], arr[j] = arr[j], arr[i]\n    arr[i + 1:] = arr[i + 1:][::-1]\n\n    return arr\n```"
+    },
+    "top_k_frequent": {
+      "pass": true,
+      "tokens": 326,
+      "seconds": 41.2,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\nfrom collections import Counter\n\ndef top_k_frequent(words: list[str], k: int) -> list[str]:\n    counts = Counter(words)\n    k = max(0, k)\n    return [word for word, _ in sorted(counts.items(), key=lambda x: (-x[1], x[0]))[:k]]\n```"
+    },
+    "simplify_path": {
+      "pass": true,
+      "tokens": 771,
+      "seconds": 95.6,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef simplify_path(path: str) -> str:\n    stack = []\n\n    for part in path.split(\"/\"):\n        if part in (\"\", \".\"):\n            continue\n        if part == \"..\":\n            if stack:\n                stack.pop()\n        else:\n            stack.append(part)\n\n    return \"/\" + \"/\".join(stack)\n```"
+    },
+    "calculate": {
+      "pass": false,
+      "tokens": 4000,
+      "seconds": 495.1,
+      "tps": 8.1,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "thon\ndef calculate(expr: str) -> int:\n    def tokenize(s: str):\n        tokens = []\n        i = 0\n        n = len(s)\n\n        while i < n:\n            c = s[i]\n\n            if c.isspace():\n                i += 1\n            elif \"0\" <= c <= \"9\":\n                j = i\n                while j < n and \"0\" <= s[j] <= \"9\":\n                    j += 1\n                tokens.append((\"num\", int(s[i:j])))\n                i = j\n            elif c in \"+-*/()\":\n                tokens.append((c, c))\n                i += 1\n            else:\n                raise ValueError(f\"Invalid character: {c!r}\")\n\n        return tokens\n\n    tokens = tokenize(expr)\n    if not tokens:\n        raise ValueError(\"Empty expression\")\n\n    pos = 0\n\n    def peek():\n        if pos < len(tokens):\n            return tokens[pos]\n        return None\n\n    def consume():\n        nonlocal pos\n        tok = peek()\n        if tok is None:\n            raise ValueError(\"Unexpected end of expression\")\n        pos += 1\n        return tok\n\n    def div(a: int, b: int) -> int:\n        if b == 0:\n            raise ZeroDivisionError(\"division by zero\")\n        q = abs(a) // abs(b)\n        return -q if (a < 0) != (b < 0) else q\n\n    def parse_expr():\n        value = parse_term()\n\n        while True:\n            tok = peek()\n            if tok is not None and tok[0] in (\"+\", \"-\"):\n                op = consume()[0]\n                rhs = parse_term()\n                if op == \"+\":\n                    value += rhs\n                else:"
+    },
+    "count_islands": {
+      "pass": true,
+      "tokens": 879,
+      "seconds": 109.4,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef count_islands(grid: list[list[str]]) -> int:\n    if not grid:\n        return 0\n\n    rows = len(grid)\n    visited = set()\n    count = 0\n\n    for r, row in enumerate(grid):\n        for c, cell in enumerate(row):\n            if cell == \"1\" and (r, c) not in visited:\n                count += 1\n                stack = [(r, c)]\n                visited.add((r, c))\n\n                while stack:\n                    i, j = stack.pop()\n\n                    for di, dj in ((1, 0), (-1, 0), (0, 1), (0, -1)):\n                        ni, nj = i + di, j + dj\n\n                        if (\n                            0 <= ni < rows\n                            and 0 <= nj < len(grid[ni])\n                            and (ni, nj) not in visited\n                            and grid[ni][nj] == \"1\"\n                        ):\n                            visited.add((ni, nj))\n                            stack.append((ni, nj))\n\n    return count\n```"
+    },
+    "edit_distance": {
+      "pass": true,
+      "tokens": 609,
+      "seconds": 75.4,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef edit_distance(a: str, b: str) -> int:\n    \"\"\"\n    Compute the Levenshtein distance between two strings.\n\n    Allowed operations:\n      - insertion\n      - deletion\n      - substitution\n    \"\"\"\n    if len(a) < len(b):\n        a, b = b, a\n\n    previous = list(range(len(b) + 1))\n\n    for i, ca in enumerate(a, 1):\n        current = [i]\n        for j, cb in enumerate(b, 1):\n            cost = 0 if ca == cb else 1\n            insert = current[j - 1] + 1\n            delete = previous[j] + 1\n            substitute = previous[j - 1] + cost\n            current.append(min(insert, delete, substitute))\n        previous = current\n\n    return previous[-1]\n```"
+    },
+    "largest_rectangle": {
+      "pass": true,
+      "tokens": 4000,
+      "seconds": 493.9,
+      "tps": 8.1,
+      "closed_thinking": false,
+      "end_think_tags": 0,
+      "answer": "). For equal heights, the first equal popped earlier with width only to current; later equal popped with width including earlier equal. Max covers full width. Example [2,2,2]. i0 push. i1 cur2: pop idx0 left=-1 area=2*1=2; push1. i2: pop idx1 left=-1 area=2*2=4; push2. sentinel: pop idx2 left=-1 area=2*3=6. correct. If there is lower after equal: [2,2,1]. i1 pop idx0 area2; i2 cur1: pop idx1 height2 left=-1 area=2*2=4; push2; sentinel pop1 area3. correct. If equal but left smaller: [1,2,2]. i0 1; i1 2; i2 2: pop idx1 left=0 area=2*1=2; push2. sentinel: pop idx2 left=0 area=2*2=4; pop idx1? no idx1 popped; pop idx0 area3. correct.\n\nNeed maybe use `>` instead of `>=` to avoid popping equal? Both O(n). `>=` is fine. Some implementations use `>` to keep equal and compute area once at sentinel; but `>=` may be more efficient? Both.\n\nNow final answer: code block.\n\nDouble-check no imports. Good.\n\nPotential lint: type annotation `list[int]` requires `from __future__ import annotations` in Python <3.9, but not relevant. Could use `List[int]` with import typing (stdlib) but user gave signature. Use as given.\n\nNeed ensure function name exactly largest_rectangle. Yes.\n\nCould include docstring? OK. But final code one block. Maybe:\n```python\ndef largest_rectangle(heights: list[int]) -> int:\n    \"\"\"Return the area of the largest rectangle in the histogram.\"\"\"\n    stack: list[int] = []\n    best = 0\n    n = len(heights)\n\n    for i in range(n + 1):\n        current = 0 if i == n else heights[i]"
+    },
+    "trap_water": {
+      "pass": false,
+      "tokens": 4000,
+      "seconds": 492.9,
+      "tps": 8.1,
+      "closed_thinking": false,
+      "end_think_tags": 0,
+      "answer": "\n    right_max=0\n    for h in reversed(heights):\n       right_max=max(right_max,h)\n       water += max(0, min(left_max? need align) - h)\nBut need suffix array. Could use O(n). Two pointer less code.\n\nNeed ensure no type import. list[int] built-in.\n\nLet's think if two pointer with initial maxes as end heights and using >= for update can double count when pointer crosses? Loop while left < right, each index processed at most once except ends? End bars don't trap water; if end height less than max on same side? Example [0,2,0]: left=0 right=0 equal process right: h0 >=0 update, right=1; left0 right1 h0<2 process left h0>=0 update left=1 stop water0. correct. [2,0,1]: left2 right1 else process right h1 update right=1; left0 right1 h2<0 false process right h0<1 water1; stop. correct.\n\nWhat about [0,2,1]: left0 right1 process left h0 update left1; h2<1 false process right h1 update? right_max initially1, h1>=1 update right0 stop water0. correct (no water because left max at index1 2, right max at index2 1, no middle). Good.\n\n[1,0,2,0,1]: left1 right1 equal process right h1 update right=3? Wait right=4 h1 update, right=3. left0 right3 h1<0 false process right h0<1 water1 right=2. left0 right2 h1<2 true process left h1>=1 update left=1. left1 right2 h0<2 water +=1? left_max=1, water +=1 =>2. left2 stop. correct? Water idx1 1, idx3 1 total2.\n\nOk.\n\nNeed final.\n\nBut let's consider user's exact: \"Write the Python function trap_water(heights: list[int]) -> int: units of rain water trapped"
+    },
+    "word_break": {
+      "pass": true,
+      "tokens": 1335,
+      "seconds": 164.7,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef word_break(s: str, words: list[str]) -> bool:\n    word_set = {w for w in words if w}\n    n = len(s)\n    dp = [False] * (n + 1)\n    dp[0] = True\n\n    max_len = max(map(len, word_set), default=0)\n\n    for i in range(1, n + 1):\n        for j in range(max(0, i - max_len), i):\n            if dp[j] and s[j:i] in word_set:\n                dp[i] = True\n                break\n\n    return dp[n]\n```"
+    },
+    "course_order": {
+      "pass": true,
+      "tokens": 953,
+      "seconds": 118.2,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\ndef course_order(n: int, prereqs: list[list[int]]) -> list[int]:\n    adj = [[] for _ in range(n)]\n    indegree = [0] * n\n\n    for a, b in prereqs:\n        # b must be taken before a\n        adj[b].append(a)\n        indegree[a] += 1\n\n    queue = [i for i in range(n) if indegree[i] == 0]\n    order = []\n    head = 0\n\n    while head < len(queue):\n        course = queue[head]\n        head += 1\n        order.append(course)\n\n        for next_course in adj[course]:\n            indegree[next_course] -= 1\n            if indegree[next_course] == 0:\n                queue.append(next_course)\n\n    return order if len(order) == n else []\n```"
+    },
+    "lis_length": {
+      "pass": true,
+      "tokens": 218,
+      "seconds": 27.8,
+      "tps": 8.2,
+      "closed_thinking": true,
+      "end_think_tags": 1,
+      "answer": "\n\n```python\nfrom bisect import bisect_left\n\ndef lis_length(nums: list[int]) -> int:\n    tails: list[int] = []\n    for x in nums:\n        i = bisect_left(tails, x)\n        if i == len(tails):\n            tails.append(x)\n        else:\n            tails[i] = x\n    return len(tails)\n```"
+    }
+  }
+}

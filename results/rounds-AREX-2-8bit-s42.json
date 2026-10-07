@@ -1,0 +1,202 @@
+{
+  "model": "AREX-2-8bit",
+  "seed": 42,
+  "tasks": {
+    "regex_match": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 2347,
+          "seconds": 324.5,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "text_justify": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1505,
+          "seconds": 210.0,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "strong_password_steps": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 540.2,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 544.0,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 577.1,
+          "feedback": "Test:\nassert strong_password_steps('a')==5\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 29, in <module>\nNameError: name 'strong_password_steps' is not defined",
+          "hit_limit": true
+        }
+      ]
+    },
+    "is_number": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 3941,
+          "seconds": 515.2,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "number_to_words": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1638,
+          "seconds": 214.5,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "skyline": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 3504,
+          "seconds": 453.2,
+          "feedback": "Test:\nassert skyline([])==[]\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 44, in <module>\nAssertionError",
+          "hit_limit": false
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 405,
+          "seconds": 54.3,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "shortest_palindrome": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 3251,
+          "seconds": 391.6,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "count_smaller": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1937,
+          "seconds": 233.5,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "sliding_median": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 481.7,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 3328,
+          "seconds": 428.3,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "burst_balloons": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 577,
+          "seconds": 72.4,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "trap_rain_2d": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 870,
+          "seconds": 107.7,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "max_points_on_line": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 1285,
+          "seconds": 158.4,
+          "feedback": "Test:\nassert max_points_on_line([[1,1],[2,2],[3,3]])==3\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 49, in <module>\nAssertionError",
+          "hit_limit": false
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 2626,
+          "seconds": 327.6,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "build": "AREX-2-full",
+  "tasks": {},
+  "loss": {
+    "tokens": 6141,
+    "mean_nll": 0.3785,
+    "perplexity": 1.4602
+  }
+}

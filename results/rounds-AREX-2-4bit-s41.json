@@ -1,0 +1,258 @@
+{
+  "model": "AREX-2-4bit",
+  "seed": 41,
+  "tasks": {
+    "regex_match": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 2603,
+          "seconds": 185.8,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "text_justify": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 289.9,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 3355,
+          "seconds": 258.3,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "strong_password_steps": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 279.4,
+          "feedback": "Test:\nassert strong_password_steps('a')==5\n\nResult:\nFile \"<string>\", line 8\nSyntaxError: 'return' outside function",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 1168,
+          "seconds": 104.1,
+          "feedback": "Test:\nassert strong_password_steps('aaaaaaaaaaaaaaaaaaaaa')==7\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 38, in <module>\nAssertionError",
+          "hit_limit": false
+        },
+        {
+          "round": 3,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 309.6,
+          "feedback": "Test:\nassert strong_password_steps('a')==5\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 50, in <module>\nNameError: name 'strong_password_steps' is not defined",
+          "hit_limit": true
+        }
+      ]
+    },
+    "is_number": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1048,
+          "seconds": 73.7,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "number_to_words": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 280.2,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 1558,
+          "seconds": 112.3,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "skyline": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 279.6,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 3950,
+          "seconds": 295.2,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "shortest_palindrome": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 279.8,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 302.5,
+          "feedback": "Test:\nassert shortest_palindrome('aacecaaa')=='aaacecaaa'\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 2, in <module>\nNameError: name 'shortest_palindrome' is not defined",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 334.3,
+          "feedback": "Test:\nassert shortest_palindrome('aacecaaa')=='aaacecaaa'\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 2, in <module>\nNameError: name 'shortest_palindrome' is not defined",
+          "hit_limit": true
+        }
+      ]
+    },
+    "count_smaller": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 280.2,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 289,
+          "seconds": 24.4,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "sliding_median": {
+      "solved_in_round": 0,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 280.2,
+          "feedback": "Test:\nassert sliding_median([1,3,-1,-3,5,3,6,7],3)==[1,-1,-1,3,5,6]\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 81, in <module>\n  File \"<string>\", line 78, in sliding_median\n  File \"<string>\", line 70, in median\nIndexError: list index out of range",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 303.5,
+          "feedback": "Test:\nassert sliding_median([1,3,-1,-3,5,3,6,7],3)==[1,-1,-1,3,5,6]\n\nResult:\nFile \"<string>\", line 5\n    assert sliding_median([1,3,-1,-3,5,3,6,7],3)==[1,-1,-1,3,5,6]\n    ^^^^^^\nIndentationError: expected an indented block after 'elif' statement on line 3",
+          "hit_limit": true
+        },
+        {
+          "round": 3,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 331.6,
+          "feedback": "Test:\nassert sliding_median([1,3,-1,-3,5,3,6,7],3)==[1,-1,-1,3,5,6]\n\nResult:\nTraceback (most recent call last):\n  File \"<string>\", line 83, in <module>\n  File \"<string>\", line 79, in sliding_median\n  File \"<string>\", line 71, in median\nIndexError: list index out of range",
+          "hit_limit": true
+        }
+      ]
+    },
+    "burst_balloons": {
+      "solved_in_round": 1,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": true,
+          "tokens": 1442,
+          "seconds": 101.4,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "trap_rain_2d": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 280.0,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 1113,
+          "seconds": 78.2,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    },
+    "max_points_on_line": {
+      "solved_in_round": 2,
+      "rounds": [
+        {
+          "round": 1,
+          "pass": false,
+          "tokens": 4000,
+          "seconds": 280.1,
+          "feedback": "No ```python code block was found in the reply.",
+          "hit_limit": true
+        },
+        {
+          "round": 2,
+          "pass": true,
+          "tokens": 2358,
+          "seconds": 166.1,
+          "feedback": "",
+          "hit_limit": false
+        }
+      ]
+    }
+  }
+}
