@@ -1,17 +1,52 @@
-# AREX-2 on Mac: MLX builds, tests and results
+# AREX-2 on Mac (MLX): tested builds, speed and quality results
 
-I converted [BAAI/AREX-2](https://huggingface.co/BAAI/AREX-2) (a Qwen3.8-27B fine-tune for coding and agent work, with image input) to MLX for Apple Silicon, and tested the builds before publishing them. This repo holds the test scripts and the raw results behind the numbers on the model pages.
+**AREX-2 runs well on Apple Silicon Macs with 32 GB of memory or more.** This repo has the numbers behind that claim and the scripts to check them yourself.
 
-**The builds:** [4-bit](https://huggingface.co/mlx-community/AREX-2-4bit) · [5-bit](https://huggingface.co/mlx-community/AREX-2-5bit) · [6-bit](https://huggingface.co/mlx-community/AREX-2-6bit) · [8-bit](https://huggingface.co/mlx-community/AREX-2-8bit) · [all four as a collection](https://huggingface.co/collections/muscleotter/arex-2-for-mac-mlx-6ac6547977445e4344948ae7)
+[AREX-2](https://huggingface.co/BAAI/AREX-2) is BAAI's open 27B model for coding, reasoning and agent work, built on Qwen3.8-27B, with image input. I converted it to MLX, the format that runs natively on Macs, in four sizes, and tested every one before publishing. As far as I can find, this is also the only published side-by-side of AREX-2 and the model it was built from.
 
-## What I found
+**Get the builds:** [4-bit](https://huggingface.co/mlx-community/AREX-2-4bit) · [5-bit](https://huggingface.co/mlx-community/AREX-2-5bit) · [6-bit](https://huggingface.co/mlx-community/AREX-2-6bit) · [8-bit](https://huggingface.co/mlx-community/AREX-2-8bit) · [all four as a collection](https://huggingface.co/collections/muscleotter/arex-2-for-mac-mlx-6ac6547977445e4344948ae7)
 
-- **The 5-bit, 6-bit and 8-bit are too close to tell apart** on these tests. The 5-bit needs the least memory of the three.
-- **The 4-bit is the weakest size.** It loops at temperature 0 and needs about twice the room to think. Seven different 4-bit recipes all landed between 88% and 93% agreement with the original.
-- **AREX-2 was more efficient than plain Qwen3.8-27B:** about 46% fewer tokens and about half the time on the same tests, with thinking on. With thinking off, in an agent harness, the two were level.
-- **A draft model made for plain Qwen3.8-27B works with AREX-2 unchanged,** taking the 8-bit from 8 to 19 tokens per second.
+## Quick answers
 
-Everything was measured on one Mac mini M4 Pro with 64 GB. These are small tests, not benchmarks, and they say nothing about the long multi-round tasks AREX-2 was trained for.
+**Can AREX-2 run on a Mac?**
+Yes. The MLX builds run on Apple Silicon. They were tested on a Mac mini M4 Pro with 64 GB, and the 5-bit uses 20 to 28 GB, so it should fit a 32 GB Mac.
+
+**Which AREX-2 quantization should I use on a Mac?**
+The 5-bit, 6-bit and 8-bit scored too close to tell apart, so take the largest that fits your memory. Use the 4-bit only if the 5-bit does not fit.
+
+**How fast is AREX-2 on an M4 Pro?**
+8 to 14 tokens per second depending on size, and 19 to 27 with a draft model. Reading a prompt runs at about 90 tokens per second.
+
+**Is AREX-2 better than Qwen3.8-27B?**
+In these tests it was more efficient: about 46% fewer tokens and about half the time, with a few more problems solved. With thinking off, in an agent harness, the two were level.
+
+**Does AREX-2 work in LM Studio?**
+Yes, including images and tool calls. Paste `https://huggingface.co/mlx-community/AREX-2-5bit` into LM Studio's model search.
+
+**Does it work in Ollama?**
+Not these builds. Ollama uses the GGUF format, so use a GGUF version of AREX-2 there.
+
+**How do I make AREX-2 faster on a Mac?**
+Use a draft model. The DFlash2 helper made for plain Qwen3.8-27B works with AREX-2 unchanged and took the 8-bit from 8 to 19 tokens per second.
+
+**Does it work in agent harnesses?**
+It was tested in MiniMax Code, where the 8-bit fixed three small failing projects in 6 of 6 trials. Other harnesses should work through LM Studio's local server, which returns standard tool calls.
+
+## Run it in two minutes
+
+Without coding: install [LM Studio](https://lmstudio.ai), paste `https://huggingface.co/mlx-community/AREX-2-5bit` into its model search, download, and chat.
+
+From the command line:
+
+```bash
+pip install -U mlx-vlm
+python -m mlx_vlm.generate \
+  --model mlx-community/AREX-2-5bit \
+  --max-tokens 4000 --temperature 1.0 --top-p 0.95 --top-k 20 \
+  --prompt "Write a Python function that merges overlapping intervals."
+```
+
+Keep the sampling at temperature 1.0, top-p 0.95, top-k 20, and give it a response limit of 4,000 tokens or more, because it thinks before it answers.
 
 ## The sizes
 
@@ -44,11 +79,11 @@ Every failed attempt by plain Qwen3.8-27B ran into the token limit (31 of 31), a
 
 **In an agent harness, with thinking off, they were level.** In MiniMax Code 0.5.9, each model fixed three small failing projects in 6 of 6 trials, in 17 and 18 minutes.
 
-## The 4-bit recipes
+## Why the 4-bit is the weak one
 
-| Recipe | Same next token as the original |
+| 4-bit recipe | Same next token as the original |
 |---|---|
-| Plain 4-bit | 91.4% |
+| Plain | 91.4% |
 | Group size 32 | 92.6% |
 | mixed_4_6 | 91.8% |
 | mixed_4_8 | 92.0% |
@@ -56,7 +91,7 @@ Every failed attempt by plain Qwen3.8-27B ran into the token limit (31 of 31), a
 | nvfp4 | 89.8% |
 | mxfp4 | 88.5% |
 
-At temperature 0 the plain 4-bit got stuck repeating `</think>` on 4 of 18 easy tasks. With the recommended sampling it did not.
+None of seven recipes got close to the 5-bit's 95.9%. At temperature 0 the plain 4-bit also got stuck repeating `</think>` on 4 of 18 easy tasks; with the recommended sampling it did not. It needs about twice the room to think, so give it a response limit of 8,000 tokens or more.
 
 ## What is in this repo
 
@@ -83,7 +118,7 @@ python image_tests.py <model>
 python test_build.py <model>
 ```
 
-`<model>` is a local folder or a Hugging Face repo name such as `mlx-community/AREX-2-5bit`. Results are written to a `results` folder next to the scripts.
+`<model>` is a local folder or a Hugging Face repo name such as `mlx-community/AREX-2-5bit`. The scripts work on any MLX model that mlx-vlm can load, so you can reuse them to test other conversions.
 
 Two things to know before running them:
 
@@ -92,9 +127,13 @@ Two things to know before running them:
 
 ## Limits
 
-- One Mac, with 64 GB. Nothing was run on a smaller machine.
+- One Mac, with 64 GB. Nothing was run on a smaller machine, so the advice for 32 GB is an estimate from measured memory use.
 - Small test sets, one or two runs each. The problems are well known, so both models have probably seen them in training.
 - Short single tasks only. BAAI's own results are on long multi-round benchmarks, which these tests do not touch.
+
+## Questions
+
+Open an issue here, or a discussion on any of the model pages.
 
 ## Credit and license
 
